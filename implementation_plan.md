@@ -887,39 +887,37 @@ def calculate_discount(credits):
 
 ---
 
-### Phase 5.2: User Management
+### Phase 5.2: User Management ✅
 
-#### Tasks
-1. **User List**
-   - Search and filter users
-   - Sort by various criteria
-   - Pagination
+#### Tasks ✅
+1. **✅ User List**
+   - ✅ Search and filter users
+   - ✅ Sort by various criteria
+   - ✅ Pagination
 
-2. **User Detail Page**
-   - View user profile
-   - Credit history
-   - Job history
-   - API key management
+2. **✅ User Detail Page**
+   - ✅ View user profile
+   - ✅ Credit history
+   - ✅ Job history
+   - ✅ API key management
 
-3. **Admin Actions**
-   - Add/deduct credits
-   - Upgrade/downgrade user
-   - Suspend/ban user
-   - Reset API key
+3. **✅ Admin Actions**
+   - ✅ Add/deduct credits
+   - ✅ Upgrade/downgrade user
+   - ✅ Suspend/ban user
+   - ✅ Reset API key
 
-#### Subtasks
-- **5.2.1**: Create `/app/backend/routes/admin/user_routes.py`
-- **5.2.2**: Implement user search and filters
-- **5.2.3**: Build user list UI
-- **5.2.4**: Create user detail page
-- **5.2.5**: Implement admin actions
+#### Subtasks ✅
+- **✅ 5.2.1**: Create `/app/backend/routes/admin/user_routes.py`
+- **✅ 5.2.2**: Implement user search and filters
+- **✅ 5.2.3**: Build user list UI
+- **✅ 5.2.4**: Create user detail page
+- **✅ 5.2.5**: Implement admin actions
 
-#### Files to Create
-- `/app/backend/routes/admin/user_routes.py`
-- `/app/frontend/src/pages/admin/Users.js`
-- `/app/frontend/src/pages/admin/UserDetail.js`
-- `/app/frontend/src/components/admin/UserTable.js`
-- `/app/frontend/src/components/admin/UserActions.js`
+#### Files Created ✅
+- ✅ `/app/backend/routes/admin/user_routes.py`
+- ✅ `/app/admin-frontend/src/pages/admin/Users.js`
+- ✅ `/app/admin-frontend/src/pages/admin/UserDetail.js`
 
 #### API Endpoints
 ```
