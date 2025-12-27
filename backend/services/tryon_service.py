@@ -74,7 +74,8 @@ class TryOnService:
         """Process the try-on job using Gemini"""
         try:
             # Update status to processing
-            await Database.get_collection('tryon_jobs').update_one(
+            db = Database.get_db()
+            await db.tryon_jobs.update_one(
                 {"id": job_id},
                 {"$set": {"status": "processing", "updated_at": datetime.utcnow()}}
             )
