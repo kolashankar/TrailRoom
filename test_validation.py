@@ -9,7 +9,7 @@ import base64
 import io
 from PIL import Image
 
-BACKEND_URL = "https://payment-gateway-240.preview.emergentagent.com/api/v1"
+BACKEND_URL = "https://admin-control-85.preview.emergentagent.com/api/v1"
 TEST_USER_EMAIL = "testuser@trailroom.com"
 TEST_USER_PASSWORD = "TestPassword123!"
 
