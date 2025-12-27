@@ -75,8 +75,9 @@ const GenerateTryon = () => {
       return;
     }
 
-    if (user.credits < 1) {
-      setError('Insufficient credits. Please purchase more credits.');
+    const creditsNeeded = mode === 'full' ? 2 : 1;
+    if (user.credits < creditsNeeded) {
+      setError(`Insufficient credits. Need ${creditsNeeded} credits. Please purchase more credits.`);
       return;
     }
 
