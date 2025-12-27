@@ -35,6 +35,10 @@ function App() {
             <Route index element={<DashboardHome />} />
             <Route path="generate" element={<GenerateTryon />} />
             <Route path="history" element={<History />} />
+            <Route path="api-playground" element={<ApiPlayground />} />
+            <Route path="docs" element={<Docs />} />
+            <Route path="webhooks" element={<Webhooks />} />
+            <Route path="usage" element={<Usage />} />
             <Route path="settings" element={<Settings />} />
           </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
