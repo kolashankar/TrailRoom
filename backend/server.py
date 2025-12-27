@@ -23,9 +23,17 @@ async def lifespan(app: FastAPI):
     logger.info("Starting TrailRoom API...")
     await Database.connect_db()
     logger.info("Database connected")
+    
+    # Start daily credit reset scheduler
+    from schedulers.daily_reset_scheduler import get_scheduler
+    scheduler = get_scheduler()
+    scheduler.start()
+    logger.info("Scheduler started")
+    
     yield
     # Shutdown
     logger.info("Shutting down TrailRoom API...")
+    scheduler.shutdown()
     await Database.close_db()
 
 # Create the main app
