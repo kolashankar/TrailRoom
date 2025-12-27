@@ -339,7 +339,30 @@ const GenerateTryon = () => {
       <div className="mt-6 p-4 bg-blue-500/20 border border-blue-500/50 rounded-lg">
         <p className="text-blue-200 text-sm">
           💳 You have <span className="font-bold">{user?.credits || 0} credits</span> remaining. 
-          Each generation costs 1 credit.
+          Top mode costs 1 credit, Full outfit mode costs 2 credits.
+        </p>
+      </div>
+    </div>
+
+    {/* Image Editor Modal */}
+    {showImageEditor && editingImage && (
+      <ImageEditor
+        imageBase64={editingImage}
+        onSave={handleSaveEditedImage}
+        onClose={() => {
+          setShowImageEditor(false);
+          setEditingImage(null);
+          setEditingImageType(null);
+        }}
+      />
+    )}
+
+    {/* Batch Processor Modal */}
+    {showBatchProcessor && (
+      <BatchProcessor onClose={() => setShowBatchProcessor(false)} />
+    )}
+  </>
+  );
         </p>
       </div>
     </div>
