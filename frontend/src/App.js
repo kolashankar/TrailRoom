@@ -28,6 +28,30 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route
+            path="/purchase-credits"
+            element={
+              <ProtectedRoute>
+                <PurchaseCredits />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/purchase-success"
+            element={
+              <ProtectedRoute>
+                <PurchaseSuccess />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/billing"
+            element={
+              <ProtectedRoute>
+                <Billing />
+              </ProtectedRoute>
+            }
+          />
+          <Route
             path="/dashboard"
             element={
               <ProtectedRoute>
