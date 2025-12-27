@@ -133,7 +133,7 @@ class TryOnService:
                 )
                 
                 # Update job with result
-                await Database.get_collection('tryon_jobs').update_one(
+                await db.tryon_jobs.update_one(
                     {"id": job_id},
                     {"$set": {
                         "status": "completed",
