@@ -10,6 +10,10 @@ import DashboardHome from "@/pages/DashboardHome";
 import GenerateTryon from "@/pages/GenerateTryon";
 import History from "@/pages/History";
 import Settings from "@/pages/Settings";
+import ApiPlayground from "@/pages/ApiPlayground";
+import Docs from "@/pages/Docs";
+import Webhooks from "@/pages/Webhooks";
+import Usage from "@/pages/Usage";
 import ProtectedRoute from "@/components/ProtectedRoute";
 
 function App() {
