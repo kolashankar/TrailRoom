@@ -38,11 +38,12 @@ class TryOnService:
             if not self.image_service.validate_base64_image(bottom_image):
                 raise ValueError("Invalid bottom image format")
         
-        # Check user credits
+        # Check user credits - full mode costs 2x
+        credits_needed = 2 if mode == "full" else 1
         db = Database.get_db()
         user = await db.users.find_one({"id": user_id})
-        if not user or user.get('credits', 0) < 1:
-            raise ValueError("Insufficient credits")
+        if not user or user.get('credits', 0) < credits_needed:
+            raise ValueError(f"Insufficient credits. Need {credits_needed}, have {user.get('credits', 0)}")
         
         # Clean base64 strings
         person_image_clean = self.image_service.clean_base64_string(person_image)
@@ -125,10 +126,11 @@ class TryOnService:
                 result_image = images[0]['data']  # Get first generated image
                 logger.info(f"Successfully generated image for job {job_id}")
                 
-                # Deduct credits
+                # Deduct credits - full mode costs 2x
+                credits_to_deduct = 2 if mode == "full" else 1
                 await self.credit_service.deduct_credits(
                     user_id=user_id,
-                    amount=1,
+                    amount=credits_to_deduct,
                     description=f"Try-on generation ({mode} mode)"
                 )
                 
