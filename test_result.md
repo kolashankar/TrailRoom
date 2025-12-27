@@ -337,3 +337,55 @@ agent_communication:
       5. History page functionality (high priority)
       
       Next steps: Test backend APIs first, then frontend UI flow.
+  
+  - agent: "main"
+    message: |
+      Phase 4 implementation completed! - Payment System & Pricing
+      
+      Backend changes:
+      - Installed razorpay==1.4.2 SDK
+      - Added Razorpay credentials to backend/.env (RAZORPAY_KEY_ID, RAZORPAY_KEY_SECRET, RAZORPAY_WEBHOOK_SECRET)
+      - Created PaymentModel for tracking payment transactions
+      - Created InvoiceModel for invoice generation
+      - Implemented PricingService with dynamic discount calculation:
+        * < 2100 credits: 0% discount
+        * = 2100 credits: 10% discount  
+        * 2100-50000 credits: Linear interpolation from 10% to 25%
+        * >= 50000 credits: 25% discount (max)
+      - Created PaymentService with Razorpay integration:
+        * Order creation
+        * Payment signature verification
+        * Webhook handling
+        * Credit addition after successful payment
+      - Created InvoiceService for invoice generation and text export
+      - Added pricing_routes.py: /api/v1/pricing/calculate, /api/v1/pricing/plans
+      - Added payment_routes.py: /api/v1/payments/create-order, /api/v1/payments/verify, /api/v1/payments/webhook, /api/v1/payments/history
+      - Added invoice_routes.py: /api/v1/invoices, /api/v1/invoices/:id, /api/v1/invoices/:id/download
+      - Updated server.py to include new routes
+      
+      Frontend changes:
+      - Created PricingCalculator component: interactive slider (300-50,000 credits) with real-time price calculation
+      - Created PlanCard component for plan display
+      - Created RazorpayButton component for payment integration
+      - Created PurchaseCredits page: plan selection (fixed 2100 or custom), pricing preview, checkout
+      - Created PurchaseSuccess page: success animation with confetti, payment details, invoice link
+      - Created Billing page: payment history table, invoice list with download
+      - Updated App.js: added routes for /purchase-credits, /purchase-success, /billing
+      - Updated DashboardLayout: made credits clickable to navigate to purchase page, added Billing link to sidebar
+      
+      Security features implemented:
+      - Backend always recalculates price (never trusts frontend)
+      - Razorpay signature verification before adding credits
+      - Payment idempotency check
+      - Webhook signature verification
+      
+      Testing priorities for Phase 4:
+      1. Pricing calculation API (high priority)
+      2. Razorpay order creation (high priority)
+      3. Payment verification flow (high priority)
+      4. Credit addition after payment (high priority)
+      5. Invoice generation (medium priority)
+      6. Frontend pricing calculator UI (high priority)
+      7. Payment flow end-to-end (high priority)
+      
+      Next steps: Test Phase 4 payment system end-to-end.
