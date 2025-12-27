@@ -33,6 +33,7 @@ const DashboardLayout = () => {
     { path: '/dashboard', icon: Home, label: 'Dashboard' },
     { path: '/dashboard/generate', icon: Sparkles, label: 'Generate Try-On' },
     { path: '/dashboard/history', icon: History, label: 'History' },
+    { path: '/billing', icon: Wallet, label: 'Billing' },
     { path: '/dashboard/api-playground', icon: Code, label: 'API Playground' },
     { path: '/dashboard/docs', icon: BookOpen, label: 'Documentation' },
     { path: '/dashboard/webhooks', icon: Webhook, label: 'Webhooks' },
