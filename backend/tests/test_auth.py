@@ -1,7 +1,13 @@
 """Unit tests for authentication services."""
 import pytest
-from backend.auth.password_utils import hash_password, verify_password
-from backend.auth.jwt_handler import create_access_token, create_refresh_token, decode_token
+import sys
+from pathlib import Path
+
+# Add backend directory to path
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
+from auth.password_utils import hash_password, verify_password
+from auth.jwt_handler import create_access_token, create_refresh_token, decode_token
 import time
 
 class TestPasswordUtils:
