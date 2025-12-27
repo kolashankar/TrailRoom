@@ -1,8 +1,8 @@
 from datetime import datetime, timedelta
 from typing import Optional
-from ..database import get_database
-from ..models.credit_transaction_model import CreditTransaction
-from ..config import settings
+from database import get_database
+from models.credit_transaction_model import CreditTransaction
+from config import settings
 import logging
 
 logger = logging.getLogger(__name__)

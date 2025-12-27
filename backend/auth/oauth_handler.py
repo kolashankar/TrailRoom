@@ -3,7 +3,7 @@ from google.oauth2 import id_token
 from google.auth.transport import requests as google_requests
 from typing import Dict, Optional
 import logging
-from ..config import settings
+from config import settings
 
 logger = logging.getLogger(__name__)
 

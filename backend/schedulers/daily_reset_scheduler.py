@@ -2,8 +2,8 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.cron import CronTrigger
 from datetime import datetime
 import logging
-from ..database import get_database
-from ..services.credit_service import CreditService
+from database import get_database
+from services.credit_service import CreditService
 
 logger = logging.getLogger(__name__)
 

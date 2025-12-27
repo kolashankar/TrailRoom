@@ -1,9 +1,9 @@
 from fastapi import Request, HTTPException, Depends
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from typing import Optional
-from ..auth.jwt_handler import decode_token
-from ..services.user_service import UserService
-from ..models.user_model import UserInDB
+from auth.jwt_handler import decode_token
+from services.user_service import UserService
+from models.user_model import UserInDB
 import logging
 
 logger = logging.getLogger(__name__)
