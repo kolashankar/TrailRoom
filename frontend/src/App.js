@@ -14,6 +14,9 @@ import ApiPlayground from "@/pages/ApiPlayground";
 import Docs from "@/pages/Docs";
 import Webhooks from "@/pages/Webhooks";
 import Usage from "@/pages/Usage";
+import PurchaseCredits from "@/pages/PurchaseCredits";
+import PurchaseSuccess from "@/pages/PurchaseSuccess";
+import Billing from "@/pages/Billing";
 import ProtectedRoute from "@/components/ProtectedRoute";
 
 function App() {
