@@ -8,7 +8,7 @@ from config import settings
 from database import Database
 
 # Import routes
-from routes import auth_routes, credit_routes, api_key_routes, tryon_routes, webhook_routes, analytics_routes
+from routes import auth_routes, credit_routes, api_key_routes, tryon_routes, webhook_routes, analytics_routes, pricing_routes, payment_routes, invoice_routes
 
 # Configure logging
 logging.basicConfig(
