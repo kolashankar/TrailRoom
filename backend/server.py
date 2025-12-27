@@ -4,11 +4,11 @@ import logging
 from contextlib import asynccontextmanager
 
 # Import configuration and database
-from .config import settings
-from .database import Database
+from config import settings
+from database import Database
 
 # Import routes
-from .routes import auth_routes, credit_routes, api_key_routes
+from routes import auth_routes, credit_routes, api_key_routes
 
 # Configure logging
 logging.basicConfig(
