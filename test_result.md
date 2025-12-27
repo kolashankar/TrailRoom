@@ -441,11 +441,14 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Try-On Service with Gemini Integration"
-    - "Try-On API Routes"
-    - "Generate Try-On Page (Multi-step)"
-    - "History Page"
-    - "Image Upload Component"
+    - "Pricing Service with Dynamic Discount Calculation"
+    - "Payment Service with Razorpay Integration"
+    - "Pricing API Routes"
+    - "Payment API Routes"
+    - "Pricing Calculator Component"
+    - "Purchase Credits Page"
+    - "Razorpay Button Component"
+    - "Billing Page"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
