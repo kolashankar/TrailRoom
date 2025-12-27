@@ -160,7 +160,8 @@ class TryOnService:
     
     async def get_job(self, job_id: str, user_id: str) -> Optional[dict]:
         """Get job by ID"""
-        job = await Database.get_collection('tryon_jobs').find_one({
+        db = Database.get_db()
+        job = await db.tryon_jobs.find_one({
             "id": job_id,
             "user_id": user_id
         })
