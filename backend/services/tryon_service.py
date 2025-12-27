@@ -179,7 +179,8 @@ class TryOnService:
     
     async def delete_job(self, job_id: str, user_id: str) -> bool:
         """Delete a job"""
-        result = await Database.get_collection('tryon_jobs').delete_one({
+        db = Database.get_db()
+        result = await db.tryon_jobs.delete_one({
             "id": job_id,
             "user_id": user_id
         })
