@@ -21,6 +21,10 @@ const GenerateTryon = () => {
   const [jobStatus, setJobStatus] = useState(null);
   const [resultImage, setResultImage] = useState(null);
   const [error, setError] = useState(null);
+  const [showImageEditor, setShowImageEditor] = useState(false);
+  const [editingImage, setEditingImage] = useState(null);
+  const [editingImageType, setEditingImageType] = useState(null);
+  const [showBatchProcessor, setShowBatchProcessor] = useState(false);
 
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
