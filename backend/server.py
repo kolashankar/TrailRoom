@@ -8,7 +8,7 @@ from config import settings
 from database import Database
 
 # Import routes
-from routes import auth_routes, credit_routes, api_key_routes, tryon_routes, webhook_routes, analytics_routes, pricing_routes, payment_routes, invoice_routes
+from routes import auth_routes, credit_routes, api_key_routes, tryon_routes, webhook_routes, analytics_routes, pricing_routes, payment_routes, invoice_routes, image_routes, batch_routes
 from routes.admin import user_routes as admin_user_routes
 from routes.admin import job_routes as admin_job_routes
 from routes.admin import analytics_routes as admin_analytics_routes
@@ -64,6 +64,8 @@ api_v1_router.include_router(analytics_routes.router)
 api_v1_router.include_router(pricing_routes.router)
 api_v1_router.include_router(payment_routes.router)
 api_v1_router.include_router(invoice_routes.router)
+api_v1_router.include_router(image_routes.router)
+api_v1_router.include_router(batch_routes.router)
 
 # Include admin route modules
 api_v1_router.include_router(admin_user_routes.router)
