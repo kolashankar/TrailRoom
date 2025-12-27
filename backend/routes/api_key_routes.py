@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException
-from ..middleware.auth_middleware import get_current_user
-from ..models.user_model import UserInDB
-from ..models.api_key_model import APIKeyCreate, APIKeyResponse
-from ..services.api_key_service import APIKeyService
+from middleware.auth_middleware import get_current_user
+from models.user_model import UserInDB
+from models.api_key_model import APIKeyCreate, APIKeyResponse
+from services.api_key_service import APIKeyService
 from typing import List
 from pydantic import BaseModel
 

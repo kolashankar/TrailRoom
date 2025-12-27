@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
-from ..middleware.auth_middleware import get_current_user
-from ..models.user_model import UserInDB
-from ..services.credit_service import CreditService
-from ..models.credit_transaction_model import CreditTransactionResponse
+from middleware.auth_middleware import get_current_user
+from models.user_model import UserInDB
+from services.credit_service import CreditService
+from models.credit_transaction_model import CreditTransactionResponse
 from typing import List
 
 router = APIRouter(prefix="/credits", tags=["Credits"])
