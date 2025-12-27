@@ -39,7 +39,8 @@ class TryOnService:
                 raise ValueError("Invalid bottom image format")
         
         # Check user credits
-        user = await Database.get_collection('users').find_one({"id": user_id})
+        db = Database.get_db()
+        user = await db.users.find_one({"id": user_id})
         if not user or user.get('credits', 0) < 1:
             raise ValueError("Insufficient credits")
         
