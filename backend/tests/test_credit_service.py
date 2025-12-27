@@ -1,7 +1,13 @@
 """Unit tests for credit service."""
 import pytest
-from backend.services.credit_service import CreditService
+import sys
+from pathlib import Path
 import uuid
+
+# Add backend directory to path
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
+from services.credit_service import CreditService
 
 class TestCreditService:
     """Test credit service operations."""
