@@ -2,12 +2,12 @@ from fastapi import APIRouter, HTTPException, status
 from pydantic import BaseModel, EmailStr
 from typing import Optional
 from datetime import timedelta
-from ..models.user_model import UserCreate, UserLogin, UserResponse
-from ..services.user_service import UserService
-from ..services.api_key_service import APIKeyService
-from ..auth.jwt_handler import create_access_token, create_refresh_token, decode_token
-from ..middleware.auth_middleware import get_current_user
-from ..models.user_model import UserInDB
+from models.user_model import UserCreate, UserLogin, UserResponse
+from services.user_service import UserService
+from services.api_key_service import APIKeyService
+from auth.jwt_handler import create_access_token, create_refresh_token, decode_token
+from middleware.auth_middleware import get_current_user
+from models.user_model import UserInDB
 from fastapi import Depends
 import logging
 
