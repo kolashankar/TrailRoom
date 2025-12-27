@@ -7,12 +7,14 @@ const ModeSelector = ({ selectedMode, onModeChange }) => {
       id: 'top',
       label: 'Top Only',
       description: 'Try on tops, shirts, jackets',
+      credits: 1,
       available: true
     },
     {
       id: 'full',
       label: 'Full Outfit',
-      description: 'Try on complete outfits',
+      description: 'Try on complete outfits (top + bottom)',
+      credits: 2,
       available: true,
       premium: true
     }
@@ -55,6 +57,9 @@ const ModeSelector = ({ selectedMode, onModeChange }) => {
                   )}
                 </h3>
                 <p className="text-sm text-gray-400">{mode.description}</p>
+                <p className="text-xs text-purple-400 font-semibold mt-2">
+                  {mode.credits} {mode.credits === 1 ? 'credit' : 'credits'}
+                </p>
               </div>
             </div>
           </button>
