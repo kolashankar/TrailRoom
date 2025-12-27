@@ -5,7 +5,11 @@ import { AuthProvider } from "@/context/AuthContext";
 import Landing from "@/pages/Landing";
 import Login from "@/pages/Login";
 import Register from "@/pages/Register";
-import Dashboard from "@/pages/Dashboard";
+import DashboardLayout from "@/layouts/DashboardLayout";
+import DashboardHome from "@/pages/DashboardHome";
+import GenerateTryon from "@/pages/GenerateTryon";
+import History from "@/pages/History";
+import Settings from "@/pages/Settings";
 import ProtectedRoute from "@/components/ProtectedRoute";
 
 function App() {
@@ -20,10 +24,15 @@ function App() {
             path="/dashboard"
             element={
               <ProtectedRoute>
-                <Dashboard />
+                <DashboardLayout />
               </ProtectedRoute>
             }
-          />
+          >
+            <Route index element={<DashboardHome />} />
+            <Route path="generate" element={<GenerateTryon />} />
+            <Route path="history" element={<History />} />
+            <Route path="settings" element={<Settings />} />
+          </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </AuthProvider>
