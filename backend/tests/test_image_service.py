@@ -1,9 +1,15 @@
 """Unit tests for image service."""
 import pytest
 import base64
-from backend.services.image_service import ImageService
+import sys
+from pathlib import Path
 from PIL import Image
 import io
+
+# Add backend directory to path
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
+from services.image_service import ImageService
 
 class TestImageService:
     """Test image validation and processing."""
