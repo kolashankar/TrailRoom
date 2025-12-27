@@ -5,7 +5,9 @@ import ImageUpload from '../components/ImageUpload';
 import ModeSelector from '../components/ModeSelector';
 import GenerationProgress from '../components/GenerationProgress';
 import ResultDisplay from '../components/ResultDisplay';
-import { AlertCircle, ArrowRight, ArrowLeft } from 'lucide-react';
+import ImageEditor from '../components/ImageEditor';
+import BatchProcessor from '../components/BatchProcessor';
+import { AlertCircle, ArrowRight, ArrowLeft, Edit, Layers } from 'lucide-react';
 
 const GenerateTryon = () => {
   const { user } = useAuth();
