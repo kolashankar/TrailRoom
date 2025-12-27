@@ -316,7 +316,7 @@ const GenerateTryon = () => {
                 disabled={!canProceedToNextStep()}
                 className="flex-1 px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 disabled:from-gray-600 disabled:to-gray-600 disabled:cursor-not-allowed text-white rounded-lg font-semibold transition-colors"
               >
-                Generate Try-On (1 Credit)
+                Generate Try-On ({mode === 'full' ? '2' : '1'} {mode === 'full' ? 'Credits' : 'Credit'})
               </button>
             )}
           </div>
