@@ -52,6 +52,8 @@ api_v1_router.include_router(auth_routes.router)
 api_v1_router.include_router(credit_routes.router)
 api_v1_router.include_router(api_key_routes.router)
 api_v1_router.include_router(tryon_routes.router)
+api_v1_router.include_router(webhook_routes.router)
+api_v1_router.include_router(analytics_routes.router)
 
 # Add root endpoint
 @api_v1_router.get("/")
