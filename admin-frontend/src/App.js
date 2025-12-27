@@ -1,5 +1,6 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
+import { Toaster } from 'sonner';
 import { useAuth } from './context/AuthContext';
 import { Login } from './pages/admin/Login';
 import { Dashboard } from './pages/admin/Dashboard';
@@ -25,23 +26,26 @@ function App() {
   }
 
   return (
-    <Routes>
-      <Route path="/login" element={<Login />} />
-      
-      <Route element={<ProtectedRoute><AdminLayout /></ProtectedRoute>}>
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/users" element={<Users />} />
-        <Route path="/users/:userId" element={<UserDetail />} />
-        <Route path="/jobs" element={<Jobs />} />
-        <Route path="/payments" element={<Payments />} />
-        <Route path="/prompts" element={<Prompts />} />
-        <Route path="/security" element={<Security />} />
-        <Route path="/audit-logs" element={<AuditLogs />} />
-      </Route>
+    <>
+      <Toaster position="top-right" richColors />
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        
+        <Route element={<ProtectedRoute><AdminLayout /></ProtectedRoute>}>
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/users" element={<Users />} />
+          <Route path="/users/:userId" element={<UserDetail />} />
+          <Route path="/jobs" element={<Jobs />} />
+          <Route path="/payments" element={<Payments />} />
+          <Route path="/prompts" element={<Prompts />} />
+          <Route path="/security" element={<Security />} />
+          <Route path="/audit-logs" element={<AuditLogs />} />
+        </Route>
 
-      <Route path="/" element={<Navigate to="/dashboard" replace />} />
-      <Route path="*" element={<Navigate to="/dashboard" replace />} />
-    </Routes>
+        <Route path="/" element={<Navigate to="/dashboard" replace />} />
+        <Route path="*" element={<Navigate to="/dashboard" replace />} />
+      </Routes>
+    </>
   );
 }
 
