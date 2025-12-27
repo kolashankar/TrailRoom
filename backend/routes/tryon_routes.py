@@ -3,7 +3,7 @@ from typing import Optional
 import logging
 
 from middleware.auth_middleware import get_current_user
-from models.user_model import UserModel
+from models.user_model import UserInDB
 from models.tryon_job_model import TryOnJobCreateRequest, TryOnJobResponse
 from services.tryon_service import TryOnService
 
@@ -15,7 +15,7 @@ tryon_service = TryOnService()
 @router.post("", response_model=TryOnJobResponse)
 async def create_tryon_job(
     request: TryOnJobCreateRequest,
-    current_user: UserModel = Depends(get_current_user)
+    current_user: UserInDB = Depends(get_current_user)
 ):
     """
     Create a new try-on job
@@ -61,7 +61,7 @@ async def create_tryon_job(
 @router.get("/{job_id}", response_model=TryOnJobResponse)
 async def get_tryon_job(
     job_id: str,
-    current_user: UserModel = Depends(get_current_user)
+    current_user: UserInDB = Depends(get_current_user)
 ):
     """
     Get a try-on job by ID
@@ -88,7 +88,7 @@ async def get_tryon_job(
 async def get_tryon_history(
     skip: int = 0,
     limit: int = 20,
-    current_user: UserModel = Depends(get_current_user)
+    current_user: UserInDB = Depends(get_current_user)
 ):
     """
     Get user's try-on history
@@ -116,7 +116,7 @@ async def get_tryon_history(
 @router.delete("/{job_id}")
 async def delete_tryon_job(
     job_id: str,
-    current_user: UserModel = Depends(get_current_user)
+    current_user: UserInDB = Depends(get_current_user)
 ):
     """
     Delete a try-on job
