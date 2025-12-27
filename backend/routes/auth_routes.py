@@ -147,7 +147,7 @@ async def logout(current_user: UserInDB = Depends(get_current_user)):
 async def google_login():
     """Initiate Google OAuth flow"""
     try:
-        from ..auth.oauth_handler import OAuthHandler
+        from auth.oauth_handler import OAuthHandler
         import secrets
         
         # Generate state for CSRF protection
@@ -165,7 +165,8 @@ async def google_login():
 async def google_callback(code: str, state: str):
     """Handle Google OAuth callback"""
     try:
-        from ..auth.oauth_handler import OAuthHandler
+        from auth.oauth_handler import OAuthHandler
+        from database import get_database
         
         # Verify the token and get user info
         user_info = OAuthHandler.verify_google_token(code)
@@ -178,7 +179,6 @@ async def google_callback(code: str, state: str):
         
         if not user:
             # Create new user with Google auth
-            from ..models.user_model import UserCreate
             user_data = UserCreate(
                 email=user_info["email"],
                 password="",  # No password for OAuth users
@@ -194,7 +194,6 @@ async def google_callback(code: str, state: str):
         # Update profile picture if available
         if user_info.get("picture"):
             db = get_database()
-            from ..database import get_database
             await db.users.update_one(
                 {"id": user.id},
                 {"$set": {"profile_picture": user_info["picture"]}}
