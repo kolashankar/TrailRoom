@@ -3,6 +3,7 @@ from pydantic import BaseModel
 from typing import List, Optional
 from middleware.auth_middleware import get_current_user
 from services.tryon_service import TryOnService
+from database import Database
 import asyncio
 
 router = APIRouter(prefix="/api/v1/batch", tags=["batch"])
@@ -22,8 +23,15 @@ async def create_batch_tryon(request: BatchTryOnRequest, current_user: dict = De
     """Create batch try-on jobs"""
     user_id = current_user["id"]
     
-    # Check batch size limit
-    max_batch_size = 10 if current_user.get("role") == "paid" else 5
+    # Get user from database to check credits
+    db = Database.get_db()
+    user = await db.users.find_one({"id": user_id})
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    
+    # Check batch size limit based on user plan
+    is_paid = user.get("credits", 0) >= 2100  # Simple check, can be enhanced
+    max_batch_size = 10 if is_paid else 5
     if len(request.items) > max_batch_size:
         raise HTTPException(
             status_code=400,
@@ -32,10 +40,10 @@ async def create_batch_tryon(request: BatchTryOnRequest, current_user: dict = De
     
     # Check total credits needed
     total_credits_needed = sum(2 if item.mode == "full" else 1 for item in request.items)
-    if current_user.get("credits", 0) < total_credits_needed:
+    if user.get("credits", 0) < total_credits_needed:
         raise HTTPException(
             status_code=400,
-            detail=f"Insufficient credits. Need {total_credits_needed}, have {current_user.get('credits', 0)}"
+            detail=f"Insufficient credits. Need {total_credits_needed}, have {user.get('credits', 0)}"
         )
     
     # Create all jobs
