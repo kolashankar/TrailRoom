@@ -65,6 +65,15 @@ api_v1_router.include_router(pricing_routes.router)
 api_v1_router.include_router(payment_routes.router)
 api_v1_router.include_router(invoice_routes.router)
 
+# Include admin route modules
+api_v1_router.include_router(admin_user_routes.router)
+api_v1_router.include_router(admin_job_routes.router)
+api_v1_router.include_router(admin_analytics_routes.router)
+api_v1_router.include_router(admin_prompt_routes.router)
+api_v1_router.include_router(admin_security_routes.router)
+api_v1_router.include_router(admin_audit_log_routes.router)
+api_v1_router.include_router(admin_payment_routes.router)
+
 # Add root endpoint
 @api_v1_router.get("/")
 async def root():
