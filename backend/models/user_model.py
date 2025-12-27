@@ -17,6 +17,7 @@ class UserInDB(UserBase):
     password_hash: Optional[str] = None
     auth_provider: Literal["email", "google"] = "email"
     role: Literal["free", "paid", "admin"] = "free"
+    admin_type: Optional[Literal["super_admin", "support_admin", "finance_admin"]] = None
     
     # Credits
     credits: int = 0
