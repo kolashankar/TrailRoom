@@ -1,9 +1,9 @@
 from datetime import datetime
 from typing import Optional
-from ..database import get_database
-from ..models.user_model import UserCreate, UserInDB, UserResponse
-from ..auth.password_utils import hash_password, verify_password
-from ..config import settings
+from database import get_database
+from models.user_model import UserCreate, UserInDB, UserResponse
+from auth.password_utils import hash_password, verify_password
+from config import settings
 import logging
 
 logger = logging.getLogger(__name__)
