@@ -2,8 +2,8 @@ import secrets
 import hashlib
 from datetime import datetime
 from typing import Optional, List
-from ..database import get_database
-from ..models.api_key_model import APIKey, APIKeyResponse
+from database import get_database
+from models.api_key_model import APIKey, APIKeyResponse
 import logging
 
 logger = logging.getLogger(__name__)
