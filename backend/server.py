@@ -31,6 +31,14 @@ async def lifespan(app: FastAPI):
     await Database.connect_db()
     logger.info("Database connected")
     
+    # Create database indexes
+    try:
+        from utils.database_indexes import create_indexes
+        await create_indexes()
+        logger.info("Database indexes created")
+    except Exception as e:
+        logger.warning(f"Index creation warning: {str(e)}")
+    
     # Start daily credit reset scheduler
     from schedulers.daily_reset_scheduler import get_scheduler
     scheduler = get_scheduler()
