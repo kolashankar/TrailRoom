@@ -9,6 +9,13 @@ from database import Database
 
 # Import routes
 from routes import auth_routes, credit_routes, api_key_routes, tryon_routes, webhook_routes, analytics_routes, pricing_routes, payment_routes, invoice_routes
+from routes.admin import user_routes as admin_user_routes
+from routes.admin import job_routes as admin_job_routes
+from routes.admin import analytics_routes as admin_analytics_routes
+from routes.admin import prompt_routes as admin_prompt_routes
+from routes.admin import security_routes as admin_security_routes
+from routes.admin import audit_log_routes as admin_audit_log_routes
+from routes.admin import payment_routes as admin_payment_routes
 
 # Configure logging
 logging.basicConfig(
