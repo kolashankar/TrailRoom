@@ -60,7 +60,8 @@ class TryOnService:
         )
         
         # Save to database
-        await Database.get_collection('tryon_jobs').insert_one(job.model_dump())
+        db = Database.get_db()
+        await db.tryon_jobs.insert_one(job.model_dump())
         
         # Process job asynchronously
         asyncio.create_task(self._process_job(job.id, user_id, mode, person_image_clean, 
