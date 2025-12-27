@@ -988,11 +988,11 @@ POST   /api/v1/admin/payments/:paymentId/refund
    - ✅ Refund credits
    - ✅ Mark as abuse
 
-#### Subtasks
-- **5.4.1**: Create job monitoring endpoints
-- **5.4.2**: Implement job actions
-- **5.4.3**: Build job monitor UI
-- **5.4.4**: Create job detail view
+#### Subtasks ✅
+- **✅ 5.4.1**: Create job monitoring endpoints
+- **✅ 5.4.2**: Implement job actions
+- **✅ 5.4.3**: Build job monitor UI
+- **✅ 5.4.4**: Create job detail view
 
 #### Files to Create
 - `/app/backend/routes/admin/job_routes.py`
