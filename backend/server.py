@@ -8,7 +8,7 @@ from config import settings
 from database import Database
 
 # Import routes
-from routes import auth_routes, credit_routes, api_key_routes
+from routes import auth_routes, credit_routes, api_key_routes, tryon_routes
 
 # Configure logging
 logging.basicConfig(
@@ -51,6 +51,7 @@ api_v1_router = APIRouter(prefix="/api/v1")
 api_v1_router.include_router(auth_routes.router)
 api_v1_router.include_router(credit_routes.router)
 api_v1_router.include_router(api_key_routes.router)
+api_v1_router.include_router(tryon_routes.router)
 
 # Add root endpoint
 @api_v1_router.get("/")
