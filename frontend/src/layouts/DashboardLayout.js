@@ -9,7 +9,11 @@ import {
   Settings, 
   LogOut,
   Menu,
-  X
+  X,
+  Code,
+  BookOpen,
+  Webhook,
+  BarChart3
 } from 'lucide-react';
 import { useState } from 'react';
 
