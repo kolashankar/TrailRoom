@@ -13,7 +13,7 @@ from PIL import Image
 import io
 
 # Configuration
-BACKEND_URL = "https://admin-control-86.preview.emergentagent.com/api/v1"
+BACKEND_URL = "https://mission-control-74.preview.emergentagent.com/api/v1"
 TEST_USER_EMAIL = "testuser@trailroom.com"
 TEST_USER_PASSWORD = "TestPassword123!"
 TEST_USER_FIRST_NAME = "Test"
