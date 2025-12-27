@@ -149,7 +149,7 @@ class TryOnService:
             logger.error(f"Error processing job {job_id}: {str(e)}")
             
             # Update job with error
-            await Database.get_collection('tryon_jobs').update_one(
+            await db.tryon_jobs.update_one(
                 {"id": job_id},
                 {"$set": {
                     "status": "failed",
