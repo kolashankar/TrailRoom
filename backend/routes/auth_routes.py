@@ -140,3 +140,89 @@ async def logout(current_user: UserInDB = Depends(get_current_user)):
     # In a stateless JWT system, logout is handled client-side
     # by removing the tokens from storage
     return {"message": "Logged out successfully"}
+
+
+# Google OAuth routes
+@router.get("/google")
+async def google_login():
+    """Initiate Google OAuth flow"""
+    try:
+        from ..auth.oauth_handler import OAuthHandler
+        import secrets
+        
+        # Generate state for CSRF protection
+        state = secrets.token_urlsafe(32)
+        
+        # Generate authorization URL
+        auth_url = OAuthHandler.get_google_auth_url(state)
+        
+        return {"auth_url": auth_url, "state": state}
+    except Exception as e:
+        logger.error(f"Google OAuth initiation error: {e}")
+        raise HTTPException(status_code=500, detail="Failed to initiate Google authentication")
+
+@router.get("/google/callback")
+async def google_callback(code: str, state: str):
+    """Handle Google OAuth callback"""
+    try:
+        from ..auth.oauth_handler import OAuthHandler
+        
+        # Verify the token and get user info
+        user_info = OAuthHandler.verify_google_token(code)
+        
+        if not user_info:
+            raise HTTPException(status_code=400, detail="Invalid authorization code")
+        
+        # Check if user exists
+        user = await UserService.get_user_by_email(user_info["email"])
+        
+        if not user:
+            # Create new user with Google auth
+            from ..models.user_model import UserCreate
+            user_data = UserCreate(
+                email=user_info["email"],
+                password="",  # No password for OAuth users
+                auth_provider="google",
+                first_name=user_info.get("given_name"),
+                last_name=user_info.get("family_name")
+            )
+            user = await UserService.create_user(user_data)
+            
+            # Generate API key for new user
+            await APIKeyService.create_api_key(user.id, "Default API Key")
+        
+        # Update profile picture if available
+        if user_info.get("picture"):
+            db = get_database()
+            from ..database import get_database
+            await db.users.update_one(
+                {"id": user.id},
+                {"$set": {"profile_picture": user_info["picture"]}}
+            )
+        
+        # Create tokens
+        access_token = create_access_token(data={"sub": user.id, "email": user.email})
+        refresh_token = create_refresh_token(data={"sub": user.id, "email": user.email})
+        
+        user_response = UserResponse(
+            id=user.id,
+            email=user.email,
+            first_name=user.first_name,
+            last_name=user.last_name,
+            role=user.role,
+            credits=user.credits,
+            daily_free_credits=user.daily_free_credits,
+            is_active=user.is_active,
+            created_at=user.created_at
+        )
+        
+        return TokenResponse(
+            access_token=access_token,
+            refresh_token=refresh_token,
+            user=user_response
+        )
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Google OAuth callback error: {e}")
+        raise HTTPException(status_code=500, detail="Failed to complete Google authentication")
