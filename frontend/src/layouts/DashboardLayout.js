@@ -1,6 +1,7 @@
 import React from 'react';
 import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import ThemeToggle from '../components/ThemeToggle';
 import { 
   Home, 
   Sparkles, 
@@ -61,7 +62,8 @@ const DashboardLayout = () => {
             </div>
 
             {/* User Info and Credits */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
+              <ThemeToggle />
               <Link
                 to="/purchase-credits"
                 className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-lg border border-purple-500/50 transition-all"
