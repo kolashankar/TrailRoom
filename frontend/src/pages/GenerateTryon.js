@@ -125,6 +125,25 @@ const GenerateTryon = () => {
     setError(null);
   };
 
+  const handleEditImage = (image, type) => {
+    setEditingImage(image);
+    setEditingImageType(type);
+    setShowImageEditor(true);
+  };
+
+  const handleSaveEditedImage = (editedImage) => {
+    if (editingImageType === 'person') {
+      setPersonImage(editedImage);
+    } else if (editingImageType === 'clothing') {
+      setClothingImage(editedImage);
+    } else if (editingImageType === 'bottom') {
+      setBottomImage(editedImage);
+    }
+    setShowImageEditor(false);
+    setEditingImage(null);
+    setEditingImageType(null);
+  };
+
   const canProceedToNextStep = () => {
     if (step === 1) return personImage !== null;
     if (step === 2) return true;
