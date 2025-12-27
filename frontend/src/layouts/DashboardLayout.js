@@ -13,7 +13,8 @@ import {
   Code,
   BookOpen,
   Webhook,
-  BarChart3
+  BarChart3,
+  Wallet
 } from 'lucide-react';
 import { useState } from 'react';
 
