@@ -169,7 +169,8 @@ class TryOnService:
     
     async def get_user_jobs(self, user_id: str, skip: int = 0, limit: int = 20) -> list:
         """Get all jobs for a user"""
-        cursor = Database.get_collection('tryon_jobs').find(
+        db = Database.get_db()
+        cursor = db.tryon_jobs.find(
             {"user_id": user_id}
         ).sort("created_at", -1).skip(skip).limit(limit)
         
