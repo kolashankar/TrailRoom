@@ -8,7 +8,6 @@ from models.webhook_model import (
 )
 from services.webhook_service import WebhookService
 from middleware.auth_middleware import get_current_user
-from models.user_model import UserModel
 import logging
 
 logger = logging.getLogger(__name__)
