@@ -157,17 +157,29 @@ const GenerateTryon = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto">
-      <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 sm:p-8 border border-white/20">
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-white mb-2">
-            Generate Try-On ✨
-          </h1>
-          <p className="text-gray-300">
-            Create realistic virtual try-ons with AI
-          </p>
-        </div>
+    <>
+      <div className="max-w-4xl mx-auto">
+        <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 sm:p-8 border border-white/20">
+          {/* Header */}
+          <div className="mb-8">
+            <div className="flex items-center justify-between">
+              <div>
+                <h1 className="text-3xl font-bold text-white mb-2">
+                  Generate Try-On ✨
+                </h1>
+                <p className="text-gray-300">
+                  Create realistic virtual try-ons with AI
+                </p>
+              </div>
+              <button
+                onClick={() => setShowBatchProcessor(true)}
+                className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg font-semibold transition-colors"
+              >
+                <Layers size={20} />
+                Batch Process
+              </button>
+            </div>
+          </div>
 
         {/* Error Message */}
         {error && (
