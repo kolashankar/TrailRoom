@@ -60,11 +60,14 @@ const DashboardLayout = () => {
 
             {/* User Info and Credits */}
             <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2 px-4 py-2 bg-purple-600/30 rounded-lg border border-purple-500/50">
-                <CreditCard size={20} className="text-purple-400" />
+              <Link
+                to="/purchase-credits"
+                className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-lg border border-purple-500/50 transition-all"
+              >
+                <CreditCard size={20} className="text-white" />
                 <span className="font-semibold text-white">{user?.credits || 0}</span>
-                <span className="text-sm text-gray-300">credits</span>
-              </div>
+                <span className="text-sm text-gray-200">credits</span>
+              </Link>
               <button
                 onClick={handleLogout}
                 className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-colors"
