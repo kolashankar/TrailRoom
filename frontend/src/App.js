@@ -1,77 +1,96 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import "@/App.css";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "@/context/AuthContext";
+import { ThemeProvider } from "@/context/ThemeContext";
+import ErrorBoundary from "@/components/ErrorBoundary";
+import ProtectedRoute from "@/components/ProtectedRoute";
+
+// Eager load critical components
 import Landing from "@/pages/Landing";
 import Login from "@/pages/Login";
 import Register from "@/pages/Register";
 import DashboardLayout from "@/layouts/DashboardLayout";
-import DashboardHome from "@/pages/DashboardHome";
-import GenerateTryon from "@/pages/GenerateTryon";
-import History from "@/pages/History";
-import Settings from "@/pages/Settings";
-import ApiPlayground from "@/pages/ApiPlayground";
-import Docs from "@/pages/Docs";
-import Webhooks from "@/pages/Webhooks";
-import Usage from "@/pages/Usage";
-import PurchaseCredits from "@/pages/PurchaseCredits";
-import PurchaseSuccess from "@/pages/PurchaseSuccess";
-import Billing from "@/pages/Billing";
-import ProtectedRoute from "@/components/ProtectedRoute";
+
+// Lazy load dashboard pages for code splitting
+const DashboardHome = lazy(() => import("@/pages/DashboardHome"));
+const GenerateTryon = lazy(() => import("@/pages/GenerateTryon"));
+const History = lazy(() => import("@/pages/History"));
+const Settings = lazy(() => import("@/pages/Settings"));
+const ApiPlayground = lazy(() => import("@/pages/ApiPlayground"));
+const Docs = lazy(() => import("@/pages/Docs"));
+const Webhooks = lazy(() => import("@/pages/Webhooks"));
+const Usage = lazy(() => import("@/pages/Usage"));
+const PurchaseCredits = lazy(() => import("@/pages/PurchaseCredits"));
+const PurchaseSuccess = lazy(() => import("@/pages/PurchaseSuccess"));
+const Billing = lazy(() => import("@/pages/Billing"));
+
+// Loading component
+const LoadingFallback = () => (
+  <div className="min-h-screen bg-gradient-to-br from-purple-900 via-gray-900 to-black flex items-center justify-center">
+    <div className="text-white text-xl">Loading...</div>
+  </div>
+);
 
 function App() {
   return (
-    <BrowserRouter>
-      <AuthProvider>
-        <Routes>
-          <Route path="/" element={<Landing />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route
-            path="/purchase-credits"
-            element={
-              <ProtectedRoute>
-                <PurchaseCredits />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/purchase-success"
-            element={
-              <ProtectedRoute>
-                <PurchaseSuccess />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/billing"
-            element={
-              <ProtectedRoute>
-                <Billing />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/dashboard"
-            element={
-              <ProtectedRoute>
-                <DashboardLayout />
-              </ProtectedRoute>
-            }
-          >
-            <Route index element={<DashboardHome />} />
-            <Route path="generate" element={<GenerateTryon />} />
-            <Route path="history" element={<History />} />
-            <Route path="api-playground" element={<ApiPlayground />} />
-            <Route path="docs" element={<Docs />} />
-            <Route path="webhooks" element={<Webhooks />} />
-            <Route path="usage" element={<Usage />} />
-            <Route path="settings" element={<Settings />} />
-          </Route>
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-      </AuthProvider>
-    </BrowserRouter>
+    <ErrorBoundary>
+      <BrowserRouter>
+        <ThemeProvider>
+          <AuthProvider>
+            <Suspense fallback={<LoadingFallback />}>
+              <Routes>
+                <Route path="/" element={<Landing />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route
+                  path="/purchase-credits"
+                  element={
+                    <ProtectedRoute>
+                      <PurchaseCredits />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/purchase-success"
+                  element={
+                    <ProtectedRoute>
+                      <PurchaseSuccess />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/billing"
+                  element={
+                    <ProtectedRoute>
+                      <Billing />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/dashboard"
+                  element={
+                    <ProtectedRoute>
+                      <DashboardLayout />
+                    </ProtectedRoute>
+                  }
+                >
+                  <Route index element={<DashboardHome />} />
+                  <Route path="generate" element={<GenerateTryon />} />
+                  <Route path="history" element={<History />} />
+                  <Route path="api-playground" element={<ApiPlayground />} />
+                  <Route path="docs" element={<Docs />} />
+                  <Route path="webhooks" element={<Webhooks />} />
+                  <Route path="usage" element={<Usage />} />
+                  <Route path="settings" element={<Settings />} />
+                </Route>
+                <Route path="*" element={<Navigate to="/" replace />} />
+              </Routes>
+            </Suspense>
+          </AuthProvider>
+        </ThemeProvider>
+      </BrowserRouter>
+    </ErrorBoundary>
   );
 }
 
