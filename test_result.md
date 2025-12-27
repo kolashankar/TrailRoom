@@ -168,6 +168,78 @@ backend:
         agent: "main"
         comment: "Updated server.py to include tryon_routes. Server starting successfully"
 
+  - task: "Pricing Service with Dynamic Discount Calculation"
+    implemented: true
+    working: "NA"
+    file: "/app/backend/services/pricing_service.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Implemented PricingService with discount calculation: 0% < 2100, 10% at 2100, linear interpolation to 25% at 50000"
+
+  - task: "Payment Service with Razorpay Integration"
+    implemented: true
+    working: "NA"
+    file: "/app/backend/services/payment_service.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Created PaymentService with order creation, signature verification, webhook handling, and credit addition"
+
+  - task: "Invoice Service"
+    implemented: true
+    working: "NA"
+    file: "/app/backend/services/invoice_service.py"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Implemented InvoiceService for invoice generation and text export"
+
+  - task: "Pricing API Routes"
+    implemented: true
+    working: "NA"
+    file: "/app/backend/routes/pricing_routes.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Created pricing endpoints: /calculate, /plans, /discount"
+
+  - task: "Payment API Routes"
+    implemented: true
+    working: "NA"
+    file: "/app/backend/routes/payment_routes.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Created payment endpoints: create-order, verify, webhook, history"
+
+  - task: "Invoice API Routes"
+    implemented: true
+    working: "NA"
+    file: "/app/backend/routes/invoice_routes.py"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Created invoice endpoints: list, get by id, download"
+
 frontend:
   - task: "Dashboard Layout with Navigation"
     implemented: true
